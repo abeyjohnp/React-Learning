@@ -140,3 +140,4 @@ you can also
 ```jsx
 console.log(props.message);
 ```
+Props makes our content reusable

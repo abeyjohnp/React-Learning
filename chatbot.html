@@ -23,10 +23,14 @@
         );
       }
     
-      function ChatMessage(props)      
+      //function ChatMessage(props)     
+      function ChatMessage({message, sender}) 
       {
-        const message = props.message;
-        const sender = props.sender;
+        // const {message} = props //it will be saved in a message variable
+        // const {sender} = props;
+
+        // const {message, sender} = props
+
         if(sender === 'robot')
         {
           return(
@@ -38,23 +42,40 @@
         }
         return(
           <div>
+            {sender === 'robot' && <img src="robot.png" width="30"/>}
             {message}
-            <img src="user.png" width="30"/>
+            {sender === 'user' && <img src="user.png" width ="30" />}
           </div>
         );
       }
-      const app = (
-        <>
+      function App () 
+      {
+        return (
+          <>
           <ChatInput/>
-          <ChatMessage message="hello chatbot" sender = "user"/>
-          <ChatMessage message="Hello! How can I help you?" sender = "robot"/>
-          <ChatMessage message="Can you get me todays date?" sender = "user"/>
-          <ChatMessage message="Today is June 10" sender = "robot"/>
+          <ChatMessage 
+            message="hello chatbot" 
+            sender = "user"
+          />
+          <ChatMessage 
+            message="Hello! How can I help you?" 
+            sender = "robot"
+          />
+          <ChatMessage 
+            message="Can you get me todays date?" 
+            sender = "user"
+          />
+          <ChatMessage 
+            message="Today is June 10" 
+            sender = "robot"
+          />
         </>
-      );
+        )
+      }
+      
 
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(app); 
+      ReactDOM.createRoot(container).render(<App/>); 
       //everything we create is put in this container, and will not effect anything outside this container.
     </script>
   </body>
