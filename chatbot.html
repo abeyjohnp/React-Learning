@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="react-basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel"> //this tells babel to tell to convert jsx to js
+      
+      //to create a  component
+      function ChatInput ()
+      {
+        return (
+          <>            
+            <input placeholder="Send a message to Chatbot" size="30"/>
+            <button> Send </button>
+          </>
+        );
+      }
+    
+      function ChatMessage(props)      
+      {
+        const message = props.message;
+        const sender = props.sender;
+        if(sender === 'robot')
+        {
+          return(
+            <div>
+            <img src="robot.png" width="30"/>
+            {message}            
+          </div>
+          );
+        }
+        return(
+          <div>
+            {message}
+            <img src="user.png" width="30"/>
+          </div>
+        );
+      }
+      const app = (
+        <>
+          <ChatInput/>
+          <ChatMessage message="hello chatbot" sender = "user"/>
+          <ChatMessage message="Hello! How can I help you?" sender = "robot"/>
+          <ChatMessage message="Can you get me todays date?" sender = "user"/>
+          <ChatMessage message="Today is June 10" sender = "robot"/>
+        </>
+      );
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(app); 
+      //everything we create is put in this container, and will not effect anything outside this container.
+    </script>
+  </body>
+</html>
